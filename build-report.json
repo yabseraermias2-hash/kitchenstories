@@ -1,0 +1,175 @@
+{
+  "meta": {
+    "site_name": "Kitchen Stories",
+    "output_file": "index.html",
+    "brief_file": "brief.txt",
+    "build_date": "2026-04-17",
+    "command": "/animated-website",
+    "skill": "animated-website"
+  },
+  "pipeline_steps": {
+    "step_1_design_system": {
+      "tool": "ui-ux-pro-max",
+      "status": "completed",
+      "output": {
+        "pattern": "Newsletter / Content First (editorial)",
+        "style": "Swiss Modernism 2.0 — editorial, clean hierarchy",
+        "colors": {
+          "primary":       "#C4623A",
+          "secondary":     "#2C1A0F",
+          "accent":        "#7A9E7E",
+          "surface_base":  "#FBF5EC",
+          "surface_raised":"#F2E8D8",
+          "ink":           "#6B4C38"
+        },
+        "typography": {
+          "display": "Playfair Display",
+          "body":    "Lora",
+          "ui":      "DM Sans"
+        },
+        "stack": "html-tailwind"
+      }
+    },
+    "step_2_brand_reference": {
+      "tool": "firecrawl",
+      "status": "completed",
+      "reference_url": "https://www.bonappetit.com",
+      "scraped_format": "branding",
+      "extracted": {
+        "editorial_layout": true,
+        "serif_typography": "Radley / Georgia body, Futura PT headings",
+        "full_bleed_photography": true,
+        "clean_section_transitions": true,
+        "target_audience": "Food enthusiasts and home cooks"
+      },
+      "borrowed": [
+        "editorial layout structure",
+        "hero composition with large food photography",
+        "recipe card design with meta info",
+        "typography hierarchy using serif display fonts",
+        "section transition spacing"
+      ],
+      "avoided": [
+        "Bon Appétit yellow/gold palette (conflicts with terracotta brief)",
+        "dark background hero (brief specifies cream)"
+      ]
+    },
+    "step_3_hero_component": {
+      "tool": "21st_magic_component_builder",
+      "status": "skipped_fallback",
+      "reason": "MCP returned [object Object] — no usable code generated",
+      "fallback": "Hero built manually using design system from Step 1",
+      "hero_features": [
+        "Split layout: text left, full-bleed image right",
+        "Playfair Display headline with word-by-word fade+rise animation (900ms, 130ms stagger)",
+        "Italic terracotta 'Stories' word",
+        "Tagline in Lora italic",
+        "Two CTAs: 'Browse Recipes' (filled) and 'My Story' (outlined)",
+        "Social proof bar with avatar stack and cook count",
+        "Floating 'New Recipe Every Week' badge with floatBob animation"
+      ]
+    },
+    "step_4_screen_generation": {
+      "tool": "google_stitch",
+      "status": "skipped",
+      "reason": "All sections built directly from brief — comprehensive design tokens and content made Stitch redundant",
+      "note": "Stitch MCP was connected and available"
+    },
+    "step_5_image_generation": {
+      "tool": "nano_banana_2",
+      "status": "skipped_per_brief",
+      "reason": "Brief Step 6 explicitly states: 'Use these existing images — do NOT generate new ones'",
+      "images_used": [
+        { "file": "images/hero.jpg",     "section": "Hero background" },
+        { "file": "images/pasta.jpg",    "section": "Brown Butter Sage Pasta recipe card" },
+        { "file": "images/cake.jpg",     "section": "Dark Chocolate Layer Cake recipe card" },
+        { "file": "images/salad.jpg",    "section": "Mango Avocado Summer Salad recipe card" },
+        { "file": "images/featured.jpg", "section": "Slow-Roasted Herbed Lamb Shoulder featured" },
+        { "file": "images/about.jpg",    "section": "About section + avatar" }
+      ]
+    },
+    "step_6_assembly": {
+      "status": "completed",
+      "output_file": "index.html",
+      "tech_stack": {
+        "css_framework": "Tailwind CSS CDN",
+        "fonts": "Google Fonts (Playfair Display, Lora, DM Sans)",
+        "javascript": "Vanilla JS — no build tools, no frameworks",
+        "structure": "Single self-contained HTML file"
+      },
+      "sections": [
+        "Fixed/sticky navbar with scroll blur + shadow + mobile menu + active link highlight",
+        "Hero — split layout, animated headline, CTAs, social proof, floating badge",
+        "Recipes — 3-column card grid (pasta, cake, salad) with image zoom on hover",
+        "Featured — wide horizontal card (lamb shoulder) with cook time, servings, difficulty",
+        "Stats Strip — 4 animated counters (240+ recipes, 18 categories, 50k+ cooks, infinity good meals)",
+        "About — dark background, image + personal story + Read My Story CTA",
+        "Footer — logo, nav links, Instagram + Pinterest social icons"
+      ],
+      "animations": [
+        "Hero title: fadeRise 900ms, word stagger 130ms each",
+        "Hero image: fadeIn 900ms delayed 300ms",
+        "Scroll reveal: IntersectionObserver threshold 0.15, translateY 28px → 0",
+        "Card stagger: s1=0ms, s2=100ms, s3=200ms, s4=300ms transition-delay",
+        "Recipe card hover: translateY(-8px) + box-shadow + image scale(1.07)",
+        "Featured card hover: box-shadow + image scale(1.04)",
+        "CTA button hover: translateY(-2px) + terracotta shadow",
+        "Outline button hover: translateY(-2px) + terracotta color",
+        "Navbar: background/blur transition after 80px scroll",
+        "Nav links: underline slide-in on active/hover",
+        "Stats count-up: cubic ease-out over ~1800ms on scroll into view",
+        "Floating badge: floatBob 5s ease-in-out infinite"
+      ]
+    },
+    "step_7_review": {
+      "status": "completed",
+      "checks_passed": 15,
+      "checks_failed": 0,
+      "checklist": {
+        "all_images_referenced": true,
+        "google_fonts_loaded": true,
+        "tailwind_cdn": true,
+        "intersection_observer_reveal": true,
+        "stats_countup": true,
+        "navbar_scroll_shadow": true,
+        "prefers_reduced_motion": true,
+        "hero_word_animations": true,
+        "mobile_menu": true,
+        "active_nav_links": true,
+        "og_meta_tags": true,
+        "alt_text_on_all_images": true,
+        "touch_targets_44px": true,
+        "all_sections_present": true,
+        "footer_present": true
+      }
+    }
+  },
+  "seo": {
+    "title": "Kitchen Stories — Food made with love, shared freely.",
+    "meta_description": "A curated collection of recipes from my kitchen to yours. From quick weeknight dinners to slow Sunday bakes.",
+    "og_title": "Kitchen Stories — Food made with love, shared freely.",
+    "og_description": "A curated collection of recipes from my kitchen to yours. From quick weeknight dinners to slow Sunday bakes.",
+    "og_image": "images/hero.jpg",
+    "og_type": "website"
+  },
+  "accessibility": {
+    "landmark_regions": ["header", "nav", "main", "footer"],
+    "alt_text": "all images",
+    "aria_labels": "interactive elements",
+    "prefers_reduced_motion": true,
+    "touch_targets_min_44px": true,
+    "keyboard_navigation": true,
+    "focus_states": true
+  },
+  "responsive_breakpoints": ["375px (mobile)", "640px (sm)", "1024px (lg)", "1280px (xl)"],
+  "design_tokens": {
+    "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+    "duration_micro": "150ms",
+    "duration_standard": "300ms",
+    "duration_expressive": "600ms",
+    "spacing_base": "4px",
+    "container_max_width": "1280px",
+    "border_radius_card": "1rem (rounded-2xl)",
+    "border_radius_featured": "1.5rem (rounded-3xl)"
+  }
+}

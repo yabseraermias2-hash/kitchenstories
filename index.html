@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kitchen Stories — Recipes Made with Love</title>
-  <meta name="description" content="Honest, seasonal recipes for real kitchens. From slow braises to quick pasta — every dish tells a story." />
-
-  <!-- Fonts: Libre Bodoni (editorial serif) + Public Sans (clean body) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Public+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kitchen Stories — Food made with love, shared freely.</title>
+  <meta name="description" content="A curated collection of recipes from my kitchen to yours. From quick weeknight dinners to slow Sunday bakes.">
+  <meta property="og:title" content="Kitchen Stories — Food made with love, shared freely.">
+  <meta property="og:description" content="A curated collection of recipes from my kitchen to yours. From quick weeknight dinners to slow Sunday bakes.">
+  <meta property="og:image" content="images/hero.jpg">
+  <meta property="og:type" content="website">
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -17,979 +16,694 @@
       theme: {
         extend: {
           colors: {
-            /* User palette */
-            primary:          '#C4623A',
-            'primary-dark':   '#A84E2C',
-            'primary-light':  '#D4795A',
-            'primary-dim':    '#E8C4B4',
-            /* Stitch "Artisanal Table" surface system (warmed to user palette) */
-            surface:          '#FBF5EC',
-            'surface-low':    '#F5EDE0',
-            'surface-high':   '#EDE0CF',
-            'surface-highest':'#E4D5BB',
-            'surface-white':  '#FFFFFF',
-            /* Text */
-            brown:            '#2C1A0F',
-            'brown-mid':      '#5C3D2E',
-            'brown-muted':    '#8B6355',
-            /* Accent */
-            sage:             '#7A9E7E',
-            'sage-dark':      '#5C7D60',
-            'sage-light':     '#9AB89E',
-            'sage-fixed':     '#C6E8C8',
-            /* Outline */
-            outline:          '#B89080',
-            'outline-light':  '#DCC1B7',
+            terracotta: '#C4623A',
+            'dark-brown': '#2C1A0F',
+            sage:        '#7A9E7E',
+            cream:       '#FBF5EC',
+            tan:         '#F2E8D8',
+            ink:         '#6B4C38',
           },
           fontFamily: {
-            serif:  ["'Libre Bodoni'", 'Georgia', 'serif'],
-            sans:   ["'Public Sans'", 'system-ui', 'sans-serif'],
-          },
-          borderRadius: {
-            sm:  '4px',
-            md:  '8px',
-            lg:  '12px',
-            xl:  '20px',
-            '2xl':'32px',
+            display: ['"Playfair Display"', 'Georgia', 'serif'],
+            body:    ['Lora', 'Georgia', 'serif'],
+            ui:      ['"DM Sans"', 'system-ui', 'sans-serif'],
           },
         }
       }
     }
   </script>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
   <style>
-    /* ── Design tokens ────────────────────────────── */
     :root {
-      --c-primary:       #C4623A;
-      --c-primary-dark:  #A84E2C;
-      --c-primary-dim:   #E8C4B4;
-      --c-surface:       #FBF5EC;
-      --c-surface-low:   #F5EDE0;
-      --c-surface-high:  #EDE0CF;
-      --c-brown:         #2C1A0F;
-      --c-brown-muted:   #6B4035;
-      --c-sage:          #7A9E7E;
-      --c-sage-fixed:    #C6E8C8;
-      --c-outline-light: #DCC1B7;
-
-      /* Shadows — ambient, depth-based (Stitch "ambient-shadow" system) */
-      --shadow-xs: 0 2px 8px rgba(44,26,15,.06);
-      --shadow-sm: 0 4px 16px rgba(44,26,15,.08);
-      --shadow-md: 0 8px 32px rgba(44,26,15,.10);
-      --shadow-lg: 0 16px 48px rgba(44,26,15,.14);
-      --shadow-xl: 0 24px 64px rgba(44,26,15,.18);
-
-      /* Easing — spring (Stitch-inspired) */
-      --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
-      --ease-out:    cubic-bezier(0.0, 0, 0.2, 1);
-      --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
-
-      /* Transitions */
-      --t-fast:   150ms;
-      --t-base:   250ms;
-      --t-slow:   400ms;
-      --t-reveal: 750ms;
+      --c-primary:   #C4623A;
+      --c-secondary: #2C1A0F;
+      --c-accent:    #7A9E7E;
+      --c-surface:   #FBF5EC;
+      --c-raised:    #F2E8D8;
+      --c-ink:       #6B4C38;
+      --ease:        cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    *, ::before, ::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 16px; }
-    body {
-      background: var(--c-surface);
-      color: var(--c-brown);
-      font-family: 'Public Sans', sans-serif;
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-    h1, h2, h3, h4, .font-serif { font-family: 'Libre Bodoni', Georgia, serif; }
+    *, *::before, *::after { box-sizing: border-box; }
+    html  { scroll-behavior: smooth; }
+    body  { font-family: 'Lora', Georgia, serif; background: var(--c-surface); color: var(--c-secondary); overflow-x: hidden; }
 
-    /* ── Reading progress bar ─────────────────────── */
-    #progress-bar {
-      position: fixed; top: 0; left: 0; z-index: 100;
-      height: 2.5px; width: 0%;
-      background: linear-gradient(90deg, var(--c-primary), var(--c-primary-dark));
-      transition: width .1s linear;
-    }
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar        { width: 5px; }
+    ::-webkit-scrollbar-track  { background: var(--c-surface); }
+    ::-webkit-scrollbar-thumb  { background: var(--c-primary); border-radius: 3px; }
 
-    /* ── Keyframes ────────────────────────────────── */
-    @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      33%       { transform: translateY(-8px) rotate(.4deg); }
-      66%       { transform: translateY(-4px) rotate(-.3deg); }
-    }
-    @keyframes clipReveal {
-      from { clip-path: inset(0 100% 0 0); }
-      to   { clip-path: inset(0 0% 0 0); }
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(32px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-    @keyframes scaleUp {
-      from { opacity: 0; transform: scale(.93); }
-      to   { opacity: 1; transform: scale(1); }
-    }
-    @keyframes slideRight {
-      from { opacity: 0; transform: translateX(-36px); }
-      to   { opacity: 1; transform: translateX(0); }
-    }
-    @keyframes slideLeft {
-      from { opacity: 0; transform: translateX(36px); }
-      to   { opacity: 1; transform: translateX(0); }
-    }
-    @keyframes dividerGrow {
-      from { width: 0; }
-      to   { width: 44px; }
-    }
-    @keyframes shimmer {
-      0%   { background-position: -200% center; }
-      100% { background-position:  200% center; }
-    }
-    @keyframes pulse-glow {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(196,98,58,.25); }
-      50%       { box-shadow: 0 0 0 8px rgba(196,98,58,0); }
-    }
+    /* ── Keyframes ── */
+    @keyframes fadeRise  { from { opacity:0; transform:translateY(40px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeIn    { from { opacity:0; }                            to { opacity:1; } }
+    @keyframes floatBob  { 0%,100% { transform:translateY(0); }          50% { transform:translateY(-10px); } }
 
-    /* ── Scroll-reveal states ─────────────────────── */
-    .reveal, .reveal-left, .reveal-right, .reveal-scale {
-      will-change: opacity, transform;
-    }
-    .reveal         { opacity: 0; transform: translateY(34px);  transition: opacity var(--t-reveal) var(--ease-spring), transform var(--t-reveal) var(--ease-spring); }
-    .reveal-left    { opacity: 0; transform: translateX(-34px); transition: opacity var(--t-reveal) var(--ease-spring), transform var(--t-reveal) var(--ease-spring); }
-    .reveal-right   { opacity: 0; transform: translateX(34px);  transition: opacity var(--t-reveal) var(--ease-spring), transform var(--t-reveal) var(--ease-spring); }
-    .reveal-scale   { opacity: 0; transform: scale(.93);         transition: opacity var(--t-reveal) var(--ease-spring), transform var(--t-reveal) var(--ease-spring); }
-    .reveal.visible, .reveal-left.visible, .reveal-right.visible, .reveal-scale.visible {
-      opacity: 1; transform: none;
-    }
-    .d1 { transition-delay: .08s; } .d2 { transition-delay: .18s; }
-    .d3 { transition-delay: .28s; } .d4 { transition-delay: .38s; }
-    .d5 { transition-delay: .48s; } .d6 { transition-delay: .58s; }
-
-    /* ── Navbar (floating — UX Pro Max pattern) ────── */
-    #navbar {
-      position: fixed; top: 1rem; left: 1.25rem; right: 1.25rem; z-index: 50;
-      border-radius: 12px;
-      padding: 1rem 0;
-      transition: background var(--t-slow) var(--ease-out),
-                  backdrop-filter var(--t-slow) var(--ease-out),
-                  box-shadow var(--t-slow) var(--ease-out),
-                  top var(--t-slow) var(--ease-out),
-                  padding var(--t-slow) var(--ease-out);
-    }
-    #navbar.scrolled {
-      background: rgba(251,245,236,.92);
-      backdrop-filter: blur(18px) saturate(160%);
-      -webkit-backdrop-filter: blur(18px) saturate(160%);
-      box-shadow: 0 2px 24px rgba(44,26,15,.10), 0 1px 0 rgba(44,26,15,.06);
-      padding: .75rem 0;
-      top: .75rem;
-    }
-
-    /* Nav link underline animation */
-    .nav-link {
-      position: relative;
-      text-decoration: none;
-      font-size: .75rem; font-weight: 700;
-      letter-spacing: .1em; text-transform: uppercase;
-      color: var(--c-brown);
-      transition: color var(--t-fast);
-    }
-    .nav-link::after {
-      content: '';
-      position: absolute; left: 0; bottom: -3px;
-      width: 0; height: 1.5px;
-      background: var(--c-primary);
-      transition: width var(--t-base) var(--ease-spring);
-    }
-    .nav-link:hover { color: var(--c-primary); }
-    .nav-link:hover::after { width: 100%; }
-
-    /* ── Buttons ──────────────────────────────────── */
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: .5rem;
-      background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-primary-dark) 100%);
-      color: #fff;
-      font-family: 'Public Sans', sans-serif;
-      font-weight: 800; font-size: .75rem;
-      letter-spacing: .08em; text-transform: uppercase;
-      padding: .85rem 1.8rem; border-radius: 3px;
-      text-decoration: none; border: none; cursor: pointer;
-      box-shadow: 0 4px 16px rgba(196,98,58,.25);
-      transition: transform var(--t-base) var(--ease-spring),
-                  box-shadow var(--t-base) var(--ease-spring),
-                  filter var(--t-base);
-      position: relative; overflow: hidden;
-    }
-    .btn-primary::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: rgba(255,255,255,.12);
+    /* ── Hero entrance ── */
+    .h-word {
+      display: inline-block;
       opacity: 0;
-      transition: opacity var(--t-fast);
+      transform: translateY(36px);
+      animation: fadeRise 900ms var(--ease) forwards;
     }
-    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(196,98,58,.35); }
-    .btn-primary:hover::before { opacity: 1; }
-    .btn-primary:active { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(196,98,58,.3); }
+    .h-sub  { opacity:0; animation: fadeIn 700ms var(--ease) 650ms  forwards; }
+    .h-body { opacity:0; animation: fadeIn 700ms var(--ease) 800ms  forwards; }
+    .h-ctas { opacity:0; animation: fadeIn 700ms var(--ease) 950ms  forwards; }
+    .h-proof{ opacity:0; animation: fadeIn 700ms var(--ease) 1100ms forwards; }
+    .h-img  { opacity:0; animation: fadeIn 900ms var(--ease) 300ms  forwards; }
+
+    /* ── Scroll reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 600ms var(--ease), transform 600ms var(--ease);
+    }
+    .reveal.on { opacity:1; transform:translateY(0); }
+
+    .s1 { transition-delay:  0ms; }
+    .s2 { transition-delay:100ms; }
+    .s3 { transition-delay:200ms; }
+    .s4 { transition-delay:300ms; }
+
+    /* ── Navbar ── */
+    #nav {
+      transition: background 300ms var(--ease), box-shadow 300ms var(--ease), backdrop-filter 300ms var(--ease);
+    }
+    #nav.scrolled {
+      background: rgba(251,245,236,0.92) !important;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 2px 20px rgba(44,26,15,0.09);
+    }
+
+    /* ── Nav link underline ── */
+    .nl {
+      position: relative;
+      transition: color 200ms var(--ease);
+    }
+    .nl::after {
+      content:''; position:absolute; bottom:-3px; left:0;
+      width:0; height:1.5px; background:var(--c-primary);
+      transition: width 300ms var(--ease);
+    }
+    .nl:hover, .nl.active { color: var(--c-primary); }
+    .nl.active::after { width:100%; }
+
+    /* ── Recipe card ── */
+    .rcard {
+      cursor: pointer;
+      transition: transform 300ms var(--ease), box-shadow 300ms var(--ease);
+    }
+    .rcard:hover { transform: translateY(-8px); box-shadow: 0 24px 64px rgba(44,26,15,0.14); }
+    .rcard:hover .rimg { transform: scale(1.07); }
+    .rimg { transition: transform 700ms var(--ease); }
+
+    /* ── Featured card ── */
+    .fcard { transition: box-shadow 300ms var(--ease); }
+    .fcard:hover { box-shadow: 0 28px 80px rgba(44,26,15,0.18); }
+    .fcard:hover .fimg { transform: scale(1.04); }
+    .fimg { transition: transform 700ms var(--ease); }
+
+    /* ── Buttons ── */
+    .btn-fill {
+      transition: transform 200ms var(--ease), box-shadow 200ms var(--ease);
+    }
+    .btn-fill:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(196,98,58,0.35); }
 
     .btn-outline {
-      display: inline-flex; align-items: center; gap: .5rem;
-      background: transparent; color: var(--c-brown);
-      font-family: 'Public Sans', sans-serif;
-      font-weight: 800; font-size: .75rem;
-      letter-spacing: .08em; text-transform: uppercase;
-      padding: .85rem 1.8rem; border-radius: 3px;
-      border: 1.5px solid rgba(44,26,15,.35);
-      text-decoration: none; cursor: pointer;
-      transition: all var(--t-base) var(--ease-spring);
+      transition: transform 200ms var(--ease), color 200ms var(--ease), border-color 200ms var(--ease);
     }
-    .btn-outline:hover { background: var(--c-brown); color: var(--c-surface); transform: translateY(-3px); box-shadow: var(--shadow-md); }
-    .btn-outline:active { transform: translateY(-1px); }
+    .btn-outline:hover { transform: translateY(-2px); color: var(--c-primary); border-color: var(--c-primary); }
 
-    /* ── Tags ─────────────────────────────────────── */
-    .tag {
-      display: inline-block;
-      font-family: 'Public Sans', sans-serif;
-      font-size: .62rem; font-weight: 800;
-      letter-spacing: .14em; text-transform: uppercase;
-      padding: .22rem .7rem; border-radius: 99px;
-    }
-    .tag-terra  { background: var(--c-primary);   color: #fff; }
-    .tag-sage   { background: var(--c-sage-fixed); color: #1d4a21; }
-    .tag-brown  { background: var(--c-brown);      color: var(--c-surface); }
-    .tag-dim    { background: var(--c-primary-dim);color: var(--c-primary-dark); }
+    /* ── Difficulty dot ── */
+    .dot { width:8px; height:8px; border-radius:50%; display:inline-block; flex-shrink:0; }
+    .dot-on  { background: var(--c-primary); }
+    .dot-off { background: var(--c-raised); border:1.5px solid var(--c-primary); }
 
-    /* ── Section chrome ───────────────────────────── */
-    .section-label {
-      font-family: 'Public Sans', sans-serif;
-      font-size: .65rem; font-weight: 800;
-      letter-spacing: .2em; text-transform: uppercase;
+    /* ── Stats number ── */
+    .stat-n {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 700;
       color: var(--c-primary);
-      display: block;
-    }
-    .divider {
-      display: block; width: 44px; height: 3px;
-      background: var(--c-primary); border-radius: 2px;
-    }
-    .divider.animated { animation: dividerGrow .8s var(--ease-spring) forwards; }
-
-    /* ── Hero image ───────────────────────────────── */
-    .hero-img-container {
-      position: relative; overflow: hidden;
-      border-radius: 16px;
-    }
-    .hero-img-container img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-      transform: scale(1.04);
-      transition: transform 12s linear;
-    }
-    .hero-img-container.loaded img { transform: scale(1); }
-
-    /* Glassmorphism badge (Stitch pattern) */
-    .glass-badge {
-      background: rgba(251,245,236,.75);
-      backdrop-filter: blur(16px) saturate(180%);
-      -webkit-backdrop-filter: blur(16px) saturate(180%);
-      border: 1px solid rgba(255,255,255,.6);
-      border-radius: 14px;
-      box-shadow: 0 8px 32px rgba(44,26,15,.12);
-      animation: float 5s ease-in-out infinite;
+      line-height: 1;
     }
 
-    /* Decorative blob (Stitch pattern) */
-    .hero-blob {
-      position: absolute; top: 0; right: 0;
-      width: 38%; height: 100%;
-      background: var(--c-surface-low);
-      border-radius: 0 0 0 100px;
-      z-index: 0;
-      opacity: .6;
-      pointer-events: none;
-    }
+    /* ── Floating badge ── */
+    .float-badge { animation: floatBob 5s ease-in-out infinite; }
 
-    /* ── Recipe Cards ─────────────────────────────── */
-    .recipe-card {
-      background: var(--c-surface-white);
-      border-radius: 10px; overflow: hidden;
-      box-shadow: var(--shadow-sm);
-      transition: transform var(--t-slow) var(--ease-spring),
-                  box-shadow var(--t-slow) var(--ease-spring);
-      cursor: pointer;
-      position: relative;
-    }
-    .recipe-card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-xl);
-    }
-    .recipe-card.offset { margin-top: 2rem; }
-    @media (max-width: 1023px) { .recipe-card.offset { margin-top: 0; } }
+    /* ── Divider rule ── */
+    .rule { width:40px; height:2px; background:var(--c-primary); flex-shrink:0; }
 
-    .card-img { overflow: hidden; height: 260px; position: relative; }
-    .card-img img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-      transition: transform .7s var(--ease-spring);
-    }
-    .recipe-card:hover .card-img img { transform: scale(1.07); }
-
-    /* Absolute tag (Stitch pattern) */
-    .card-tag-abs {
-      position: absolute; top: 14px; left: 14px; z-index: 10;
-    }
-
-    /* ── Featured section ─────────────────────────── */
-    .featured-img {
-      position: relative; overflow: hidden;
-      border-radius: 12px;
-      aspect-ratio: 4/5;
-    }
-    .featured-img img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-      transition: transform .9s var(--ease-spring);
-    }
-    .featured-img:hover img { transform: scale(1.04); }
-
-    /* Editor's Pick tab label (Stitch pattern) */
-    .editors-pick-tab {
-      position: absolute; top: -1px; left: -1px;
-      background: var(--c-primary);
-      color: #fff;
-      font-family: 'Public Sans', sans-serif;
-      font-size: .6rem; font-weight: 900;
-      letter-spacing: .2em; text-transform: uppercase;
-      padding: .45rem .9rem;
-      z-index: 10;
-      border-radius: 0 0 6px 0;
-    }
-
-    /* Decorative circle (Stitch pattern) */
-    .deco-circle {
-      position: absolute; border-radius: 50%;
-      pointer-events: none; z-index: -1;
-    }
-
-    /* ── Stats ────────────────────────────────────── */
-    .stat-col {
-      text-align: center; padding: 2.5rem 1.5rem;
-      border-right: 1px solid rgba(251,245,236,.12);
-    }
-    .stat-col:last-child { border-right: none; }
-    @media (max-width: 767px) {
-      .stat-col { border-right: none; border-bottom: 1px solid rgba(251,245,236,.12); }
-      .stat-col:nth-child(even) { border-left: 1px solid rgba(251,245,236,.12); }
-      .stat-col:nth-last-child(-n+2) { border-bottom: none; }
-    }
-
-    .stat-number { font-size: 0; } /* hidden until JS sets it */
-
-    /* ── Meta chips ───────────────────────────────── */
-    .meta-chip {
-      display: inline-flex; align-items: center; gap: .45rem;
-      background: var(--c-surface-low);
-      padding: .45rem 1rem; border-radius: 99px;
-    }
-
-    /* ── Footer links ─────────────────────────────── */
-    .footer-link {
-      color: rgba(251,245,236,.5);
-      text-decoration: none; font-size: .85rem;
-      transition: color var(--t-fast);
-    }
-    .footer-link:hover { color: #FBF5EC; }
-
-    /* ── Social icon ──────────────────────────────── */
-    .social-icon {
-      width: 36px; height: 36px; border-radius: 50%;
-      background: rgba(255,255,255,.1);
-      display: flex; align-items: center; justify-content: center;
-      transition: background var(--t-base) var(--ease-spring),
-                  transform var(--t-base) var(--ease-spring);
-      cursor: pointer; text-decoration: none;
-    }
-    .social-icon:hover { background: var(--c-primary); transform: translateY(-3px); }
-    .social-icon:active { transform: translateY(-1px); }
-
-    /* ── Scrollbar ────────────────────────────────── */
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: var(--c-surface); }
-    ::-webkit-scrollbar-thumb { background: var(--c-surface-highest); border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--c-brown-muted); }
-
-    /* ── Reduced-motion override ──────────────────── */
+    /* ── prefers-reduced-motion ── */
     @media (prefers-reduced-motion: reduce) {
-      *, ::before, ::after {
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: .01ms !important;
+      *, *::before, *::after {
+        animation-duration: 200ms !important;
+        animation-delay: 0ms !important;
+        transition-duration: 200ms !important;
       }
-      .reveal, .reveal-left, .reveal-right, .reveal-scale {
-        opacity: 1 !important; transform: none !important;
-        transition: none !important;
-      }
-      .glass-badge { animation: none !important; }
-      #progress-bar { display: none; }
+      .h-word, .h-sub, .h-body, .h-ctas, .h-proof, .h-img { opacity:1 !important; transform:none !important; }
+      .reveal { opacity:1 !important; transform:none !important; }
+      .rcard:hover, .fcard:hover, .btn-fill:hover, .btn-outline:hover { transform:none !important; }
+      .float-badge { animation: none !important; }
     }
   </style>
 </head>
-<body>
 
-  <!-- Reading progress bar -->
-  <div id="progress-bar" role="presentation" aria-hidden="true"></div>
+<body class="bg-cream">
 
+<!-- ═══════════════════════════════════════
+     NAVBAR
+═══════════════════════════════════════ -->
+<header>
+  <nav id="nav" class="fixed top-0 left-0 right-0 z-50 bg-cream/80 px-6 lg:px-12">
+    <div class="max-w-7xl mx-auto flex items-center justify-between h-16 lg:h-[72px]">
 
-  <!-- ═════════════════════════════════════════════ -->
-  <!-- NAVBAR                                        -->
-  <!-- ═════════════════════════════════════════════ -->
-  <nav id="navbar" role="navigation" aria-label="Main navigation">
-    <div class="max-w-7xl mx-auto px-6 md:px-10 flex items-center justify-between">
-
-      <!-- Wordmark -->
-      <a href="#" class="font-serif text-[1.3rem] font-bold text-brown tracking-tight hover:text-primary transition-colors duration-200 relative z-10">
-        Kitchen Stories
+      <a href="#hero" aria-label="Kitchen Stories — home" class="cursor-pointer flex-shrink-0">
+        <span class="font-display text-xl lg:text-2xl font-semibold text-dark-brown tracking-tight select-none">
+          Kitchen <em class="not-italic text-terracotta italic">Stories</em>
+        </span>
       </a>
 
-      <!-- Desktop links -->
-      <div class="hidden md:flex items-center gap-9">
-        <a href="#recipes"  class="nav-link">Recipes</a>
-        <a href="#featured" class="nav-link">Featured</a>
-        <a href="#about"    class="nav-link">About</a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#recipes"  class="nl font-ui text-[13px] font-medium text-ink tracking-widest uppercase" data-s="recipes">Recipes</a>
+        <a href="#featured" class="nl font-ui text-[13px] font-medium text-ink tracking-widest uppercase" data-s="featured">Featured</a>
+        <a href="#about"    class="nl font-ui text-[13px] font-medium text-ink tracking-widest uppercase" data-s="about">About</a>
       </div>
 
-      <!-- CTA + hamburger -->
-      <div class="flex items-center gap-4">
-        <a href="#newsletter" class="hidden md:inline-flex items-center gap-2 text-[.73rem] font-extrabold text-primary hover:text-primary-dark transition-colors tracking-widest uppercase">
-          Subscribe
-          <svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4-4 4M3 12h18"/></svg>
-        </a>
-        <button id="mobile-btn" class="md:hidden p-2 rounded text-brown hover:text-primary transition-colors cursor-pointer" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
-          <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
-        </button>
-      </div>
+      <a href="#recipes" class="hidden md:inline-flex items-center gap-2 btn-fill bg-terracotta text-cream px-5 py-2.5 rounded-full font-ui text-sm font-medium cursor-pointer min-h-[44px]" aria-label="Browse all recipes">
+        Browse Recipes
+      </a>
+
+      <button id="mob-btn" class="md:hidden w-11 h-11 flex items-center justify-center cursor-pointer" aria-label="Open navigation" aria-expanded="false" aria-controls="mob-menu">
+        <svg id="icon-open"  width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2C1A0F" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg id="icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2C1A0F" stroke-width="2" stroke-linecap="round" class="hidden" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
     </div>
 
-    <!-- Mobile drawer -->
-    <div id="mobile-menu" class="hidden md:hidden px-6 pb-6 pt-4 mt-2" style="background: rgba(251,245,236,.96); backdrop-filter: blur(16px);" role="menu">
-      <div class="flex flex-col gap-5 border-t border-surface-high pt-5">
-        <a href="#recipes"    class="text-sm font-bold text-brown tracking-widest uppercase hover:text-primary transition-colors" role="menuitem">Recipes</a>
-        <a href="#featured"   class="text-sm font-bold text-brown tracking-widest uppercase hover:text-primary transition-colors" role="menuitem">Featured</a>
-        <a href="#about"      class="text-sm font-bold text-brown tracking-widest uppercase hover:text-primary transition-colors" role="menuitem">About</a>
-        <a href="#newsletter" class="text-sm font-extrabold text-primary tracking-widest uppercase" role="menuitem">Subscribe →</a>
-      </div>
+    <div id="mob-menu" class="hidden md:hidden border-t border-tan pb-5 pt-3 flex flex-col gap-1">
+      <a href="#recipes"  class="font-ui text-sm font-medium text-ink py-3 px-1 tracking-widest uppercase hover:text-terracotta transition-colors duration-200 cursor-pointer">Recipes</a>
+      <a href="#featured" class="font-ui text-sm font-medium text-ink py-3 px-1 tracking-widest uppercase hover:text-terracotta transition-colors duration-200 cursor-pointer">Featured</a>
+      <a href="#about"    class="font-ui text-sm font-medium text-ink py-3 px-1 tracking-widest uppercase hover:text-terracotta transition-colors duration-200 cursor-pointer">About</a>
+      <a href="#recipes"  class="mt-2 inline-flex items-center justify-center btn-fill bg-terracotta text-cream px-5 py-3 rounded-full font-ui text-sm font-medium cursor-pointer min-h-[44px]">Browse Recipes</a>
     </div>
   </nav>
+</header>
 
+<main>
 
-  <!-- ═════════════════════════════════════════════ -->
-  <!-- HERO  (Stitch 12-col grid + glassmorphism)   -->
-  <!-- ═════════════════════════════════════════════ -->
-  <section id="hero" class="relative pt-36 md:pt-44 pb-20 md:pb-32 px-6 md:px-10 overflow-hidden">
-    <!-- Decorative background blob (Stitch pattern) -->
-    <div class="hero-blob" aria-hidden="true"></div>
+<!-- ═══════════════════════════════════════
+     HERO
+═══════════════════════════════════════ -->
+<section id="hero" class="relative min-h-screen bg-cream pt-16 lg:pt-[72px] flex items-center overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center py-16 lg:min-h-[calc(100vh-72px)]">
 
-    <div class="max-w-7xl mx-auto relative z-10">
-      <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-
-        <!-- Left col: copy (col 1–6) -->
-        <div class="lg:col-span-6">
-          <span class="section-label mb-5 reveal">Seasonal Cooking</span>
-          <h1 class="font-serif text-[3.2rem] md:text-[4rem] lg:text-[4.8rem] font-bold text-brown leading-[1.06] tracking-tight mb-7 reveal d1">
-            Food Made<br/>
-            <em class="text-primary not-italic">with Love</em>
-          </h1>
-          <p class="text-brown-muted text-[1.05rem] leading-relaxed mb-9 max-w-[420px] reveal d2">
-            Recipes crafted in a real kitchen, for real people. From slow Sunday braises to quick weeknight pasta — every dish tells a story.
-          </p>
-          <div class="flex flex-wrap gap-4 mb-14 reveal d3">
-            <a href="#recipes" class="btn-primary">
-              Browse Recipes
-              <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4-4 4M3 12h18"/></svg>
-            </a>
-            <a href="#featured" class="btn-outline">This Week's Pick</a>
-          </div>
-
-          <!-- Mini stats -->
-          <div class="grid grid-cols-3 gap-0 border-t border-surface-high pt-8 max-w-[360px] reveal d4">
-            <div>
-              <p class="font-serif text-[2.1rem] font-bold text-brown leading-none" data-counter="240" data-suffix="+">0+</p>
-              <p class="text-[.62rem] font-bold text-brown-muted tracking-[.18em] uppercase mt-1.5">Recipes</p>
-            </div>
-            <div>
-              <p class="font-serif text-[2.1rem] font-bold text-brown leading-none" data-counter="18" data-suffix="k">0k</p>
-              <p class="text-[.62rem] font-bold text-brown-muted tracking-[.18em] uppercase mt-1.5">Readers</p>
-            </div>
-            <div>
-              <p class="font-serif text-[2.1rem] font-bold text-brown leading-none">5 ★</p>
-              <p class="text-[.62rem] font-bold text-brown-muted tracking-[.18em] uppercase mt-1.5">Rating</p>
-            </div>
-          </div>
+      <!-- Left: copy -->
+      <div class="flex flex-col justify-center order-2 lg:order-1">
+        <div class="h-sub flex items-center gap-3 mb-6">
+          <div class="rule"></div>
+          <span class="font-ui text-xs font-medium text-terracotta tracking-[0.2em] uppercase">Personal Recipe Blog</span>
         </div>
 
-        <!-- Right col: image (col 7–12) -->
-        <div class="lg:col-span-6 relative reveal-scale d2">
-          <div class="hero-img-container h-[460px] md:h-[580px]" id="hero-img-wrap">
-            <img src="images/hero.jpg" alt="A beautifully plated seasonal dish on a warm ceramic plate" loading="eager"
-              onload="this.closest('.hero-img-container').classList.add('loaded')" />
-          </div>
+        <h1 class="font-display font-bold text-dark-brown leading-[1.04] mb-5"
+            style="font-size: clamp(3rem, 7vw, 5.5rem);">
+          <span class="h-word block" style="animation-delay:0ms">Kitchen</span>
+          <span class="h-word block italic text-terracotta" style="animation-delay:130ms">Stories</span>
+        </h1>
 
-          <!-- Glassmorphism floating badge (Stitch pattern) -->
-          <div class="glass-badge absolute bottom-7 left-7 px-5 py-4 flex items-center gap-4 max-w-[230px]" aria-hidden="true">
-            <div class="w-10 h-10 rounded-full flex-shrink-0 flex items-center justify-center" style="background: linear-gradient(135deg,#C4623A,#A84E2C);">
-              <svg class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-            </div>
-            <div>
-              <p class="text-[.72rem] font-extrabold text-brown tracking-wide">New Recipe</p>
-              <p class="text-[.68rem] text-brown-muted mt-.5">Posted today</p>
-            </div>
-          </div>
+        <p class="h-sub font-body text-xl lg:text-2xl text-ink italic leading-snug mb-3">
+          Food made with love, shared freely.
+        </p>
+        <p class="h-body font-body text-base lg:text-lg text-ink/75 leading-relaxed mb-10 max-w-md">
+          A curated collection of recipes from my kitchen to yours — every dish tells a story worth telling.
+        </p>
 
-          <!-- Decorative elements -->
-          <div class="absolute -top-4 -right-4 w-20 h-20 rounded-full border-[5px] border-primary opacity-[.18] pointer-events-none" aria-hidden="true"></div>
-          <div class="absolute top-12 right-6 w-3 h-3 rounded-full bg-primary opacity-40 pointer-events-none" aria-hidden="true"></div>
-          <div class="absolute bottom-24 right-2 w-2 h-2 rounded-full bg-sage opacity-50 pointer-events-none" aria-hidden="true"></div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═════════════════════════════════════════════ -->
-  <!-- RECIPES GRID  (Stitch tall-card + offset)    -->
-  <!-- ═════════════════════════════════════════════ -->
-  <section id="recipes" class="py-20 md:py-28 px-6 md:px-10" style="background: var(--c-surface-low);">
-    <div class="max-w-7xl mx-auto">
-
-      <!-- Header row -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-5">
-        <div>
-          <span class="section-label mb-3 reveal">Browse the Collection</span>
-          <h2 class="font-serif text-4xl md:text-[3.2rem] font-bold text-brown leading-tight reveal d1">Latest Recipes</h2>
-          <span class="divider mt-5 reveal d2"></span>
-        </div>
-        <a href="#" class="btn-outline self-start md:self-end reveal d2 whitespace-nowrap">View All</a>
-      </div>
-
-      <!-- 3-column grid with middle-card offset (Stitch pattern) -->
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
-
-        <!-- Card 1 — Pasta -->
-        <article class="recipe-card reveal d1 cursor-pointer" tabindex="0" role="article">
-          <div class="card-img">
-            <img src="images/pasta.jpg" alt="Classic cacio e pepe — spaghetti in a bowl with cracked black pepper" loading="lazy" />
-            <div class="card-tag-abs"><span class="tag tag-terra">Pasta</span></div>
-          </div>
-          <div class="px-7 py-6">
-            <div class="flex items-center gap-2 mb-3">
-              <svg class="w-3 h-3 text-brown-muted flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2"/></svg>
-              <span class="text-[.7rem] text-brown-muted font-semibold">30 min</span>
-            </div>
-            <h3 class="font-serif text-[1.25rem] font-bold text-brown mb-2.5 leading-snug group-hover:text-primary transition-colors">
-              Classic Cacio e Pepe
-            </h3>
-            <p class="text-[.875rem] text-brown-muted leading-relaxed mb-6">
-              The Roman original — three ingredients, zero shortcuts, maximum flavour.
-            </p>
-            <div class="flex items-center justify-between pt-5" style="border-top: 1px solid var(--c-outline-light);">
-              <div class="flex items-center gap-2.5">
-                <div class="w-7 h-7 rounded-full overflow-hidden flex-shrink-0">
-                  <img src="images/about.jpg" alt="Author Sofia" class="w-full h-full object-cover" loading="lazy" />
-                </div>
-                <span class="text-[.7rem] text-brown-muted font-bold tracking-wide">Sofia M.</span>
-              </div>
-              <a href="#" class="text-[.68rem] font-extrabold text-primary hover:text-primary-dark transition-colors tracking-widest uppercase flex items-center gap-1">
-                Read
-                <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4-4 4M3 12h18"/></svg>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card 2 — Cake (offset, Stitch pattern) -->
-        <article class="recipe-card offset reveal d2 cursor-pointer" tabindex="0" role="article">
-          <div class="card-img">
-            <img src="images/cake.jpg" alt="Brown butter layer cake with cream cheese frosting" loading="lazy" />
-            <div class="card-tag-abs"><span class="tag tag-sage">Baking</span></div>
-          </div>
-          <div class="px-7 py-6">
-            <div class="flex items-center gap-2 mb-3">
-              <svg class="w-3 h-3 text-brown-muted flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2"/></svg>
-              <span class="text-[.7rem] text-brown-muted font-semibold">90 min</span>
-            </div>
-            <h3 class="font-serif text-[1.25rem] font-bold text-brown mb-2.5 leading-snug">
-              Brown Butter Layer Cake
-            </h3>
-            <p class="text-[.875rem] text-brown-muted leading-relaxed mb-6">
-              Nutty brown butter, whipped cream cheese frosting, and thin layers of pure joy.
-            </p>
-            <div class="flex items-center justify-between pt-5" style="border-top: 1px solid var(--c-outline-light);">
-              <div class="flex items-center gap-2.5">
-                <div class="w-7 h-7 rounded-full overflow-hidden flex-shrink-0">
-                  <img src="images/about.jpg" alt="Author Sofia" class="w-full h-full object-cover" loading="lazy" />
-                </div>
-                <span class="text-[.7rem] text-brown-muted font-bold tracking-wide">Sofia M.</span>
-              </div>
-              <a href="#" class="text-[.68rem] font-extrabold text-primary hover:text-primary-dark transition-colors tracking-widest uppercase flex items-center gap-1">
-                Read
-                <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4-4 4M3 12h18"/></svg>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card 3 — Salad -->
-        <article class="recipe-card reveal d3 cursor-pointer" tabindex="0" role="article">
-          <div class="card-img">
-            <img src="images/salad.jpg" alt="Fresh spring herb salad with lemon-shallot vinaigrette" loading="lazy" />
-            <div class="card-tag-abs"><span class="tag tag-brown">Seasonal</span></div>
-          </div>
-          <div class="px-7 py-6">
-            <div class="flex items-center gap-2 mb-3">
-              <svg class="w-3 h-3 text-brown-muted flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2"/></svg>
-              <span class="text-[.7rem] text-brown-muted font-semibold">15 min</span>
-            </div>
-            <h3 class="font-serif text-[1.25rem] font-bold text-brown mb-2.5 leading-snug">
-              Spring Herb Salad
-            </h3>
-            <p class="text-[.875rem] text-brown-muted leading-relaxed mb-6">
-              Tender lettuces, fresh herbs, and a bright lemon-shallot vinaigrette. Effortlessly elegant.
-            </p>
-            <div class="flex items-center justify-between pt-5" style="border-top: 1px solid var(--c-outline-light);">
-              <div class="flex items-center gap-2.5">
-                <div class="w-7 h-7 rounded-full overflow-hidden flex-shrink-0">
-                  <img src="images/about.jpg" alt="Author Sofia" class="w-full h-full object-cover" loading="lazy" />
-                </div>
-                <span class="text-[.7rem] text-brown-muted font-bold tracking-wide">Sofia M.</span>
-              </div>
-              <a href="#" class="text-[.68rem] font-extrabold text-primary hover:text-primary-dark transition-colors tracking-widest uppercase flex items-center gap-1">
-                Read
-                <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4-4 4M3 12h18"/></svg>
-              </a>
-            </div>
-          </div>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═════════════════════════════════════════════ -->
-  <!-- FEATURED  (Stitch 12-col + Editor's Pick tab)-->
-  <!-- ═════════════════════════════════════════════ -->
-  <section id="featured" class="py-20 md:py-28 px-6 md:px-10" style="background: var(--c-surface);">
-    <div class="max-w-7xl mx-auto">
-      <div class="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
-
-        <!-- Image (col 2–6, Stitch asymmetry) -->
-        <div class="lg:col-span-5 lg:col-start-1 relative reveal-left">
-          <div class="featured-img">
-            <img src="images/featured.jpg" alt="Slow-roasted tomato and ricotta tart golden from the oven" loading="lazy" />
-            <!-- Editor's Pick tab (Stitch pattern) -->
-            <div class="editors-pick-tab">Editor's Pick</div>
-          </div>
-          <!-- Decorative shapes (Stitch pattern) -->
-          <div class="deco-circle bg-primary opacity-[.10]"
-            style="width:140px;height:140px;bottom:-40px;right:-40px;"></div>
-          <div class="deco-circle bg-sage opacity-[.12]"
-            style="width:80px;height:80px;top:-20px;left:-20px;"></div>
-        </div>
-
-        <!-- Content (col 7–12) -->
-        <div class="lg:col-span-6 lg:col-start-7 reveal-right d1">
-          <span class="section-label mb-4">This Week's Feature</span>
-          <span class="tag tag-dim mb-5 inline-block">Editor's Pick</span>
-          <h2 class="font-serif text-4xl md:text-[3rem] font-bold text-brown leading-tight mb-5">
-            Slow-Roasted Tomato<br/>&amp; Ricotta Tart
-          </h2>
-          <span class="divider mb-7"></span>
-          <p class="text-brown-muted text-[1rem] leading-relaxed mb-4">
-            Hours in the oven transform humble tomatoes into something deeply concentrated and sweet. Paired with whipped herbed ricotta and a shattering crisp shortcrust — this tart is summer on a plate.
-          </p>
-          <p class="text-brown-muted text-[1rem] leading-relaxed mb-9">
-            Serve it warm at a garden table with a glass of chilled Vermentino. You will not regret it.
-          </p>
-
-          <!-- Meta chips -->
-          <div class="flex flex-wrap gap-3 mb-10">
-            <div class="meta-chip">
-              <svg class="w-4 h-4 text-primary flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2"/></svg>
-              <span class="text-[.78rem] font-bold text-brown">2.5 hrs total</span>
-            </div>
-            <div class="meta-chip">
-              <svg class="w-4 h-4 text-sage flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-              <span class="text-[.78rem] font-bold text-brown">Serves 6</span>
-            </div>
-            <div class="meta-chip">
-              <svg class="w-4 h-4 text-brown-muted flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-              <span class="text-[.78rem] font-bold text-brown">Medium</span>
-            </div>
-          </div>
-
-          <a href="#" class="btn-primary">
-            Get the Recipe
-            <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4-4 4M3 12h18"/></svg>
+        <div class="h-ctas flex flex-wrap gap-4">
+          <a href="#recipes" class="btn-fill inline-flex items-center gap-2.5 bg-terracotta text-cream px-7 py-3.5 rounded-full font-ui font-medium text-sm cursor-pointer min-h-[44px]" aria-label="Browse all recipes">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            Browse Recipes
+          </a>
+          <a href="#about" class="btn-outline inline-flex items-center gap-2.5 border-2 border-dark-brown text-dark-brown px-7 py-3.5 rounded-full font-ui font-medium text-sm cursor-pointer min-h-[44px]" aria-label="Read my story">
+            My Story
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
         </div>
 
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═════════════════════════════════════════════ -->
-  <!-- STATS STRIP  (animated counters)             -->
-  <!-- ═════════════════════════════════════════════ -->
-  <section class="py-4" style="background: var(--c-brown);" aria-label="Kitchen Stories by the numbers">
-    <div class="max-w-7xl mx-auto px-6 md:px-10">
-      <div class="grid grid-cols-2 md:grid-cols-4">
-
-        <div class="stat-col reveal d1">
-          <p class="font-serif text-[2.8rem] md:text-[3.4rem] font-bold text-surface leading-none mb-2"
-            data-counter="240" data-suffix="+" id="stat-recipes">240+</p>
-          <p class="text-[.62rem] font-bold text-surface tracking-[.2em] uppercase opacity-50">Recipes Published</p>
-        </div>
-        <div class="stat-col reveal d2">
-          <p class="font-serif text-[2.8rem] md:text-[3.4rem] font-bold text-primary leading-none mb-2"
-            data-counter="18" data-suffix="k" id="stat-readers">18k</p>
-          <p class="text-[.62rem] font-bold text-surface tracking-[.2em] uppercase opacity-50">Monthly Readers</p>
-        </div>
-        <div class="stat-col reveal d3">
-          <p class="font-serif text-[2.8rem] md:text-[3.4rem] font-bold text-surface leading-none mb-2"
-            id="stat-rating">5 ★</p>
-          <p class="text-[.62rem] font-bold text-surface tracking-[.2em] uppercase opacity-50">Average Rating</p>
-        </div>
-        <div class="stat-col reveal d4">
-          <p class="font-serif text-[2.8rem] md:text-[3.4rem] font-bold text-sage leading-none mb-2"
-            data-counter="8" data-suffix=" yrs" id="stat-years">8 yrs</p>
-          <p class="text-[.62rem] font-bold text-surface tracking-[.2em] uppercase opacity-50">In the Kitchen</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═════════════════════════════════════════════ -->
-  <!-- ABOUT                                         -->
-  <!-- ═════════════════════════════════════════════ -->
-  <section id="about" class="py-20 md:py-28 px-6 md:px-10" style="background: var(--c-surface);">
-    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-14 md:gap-20 items-center">
-
-      <!-- Copy -->
-      <div class="reveal-left">
-        <span class="section-label mb-4">The Person Behind the Stove</span>
-        <h2 class="font-serif text-4xl md:text-[3rem] font-bold text-brown leading-tight mb-5">
-          Hi, I'm Sofia —<br/>I cook to tell stories.
-        </h2>
-        <span class="divider mb-7"></span>
-        <p class="text-brown-muted text-[1rem] leading-relaxed mb-4">
-          I grew up watching my grandmother turn a handful of garden vegetables into feasts that fed the whole neighbourhood. That generosity, that magic — that's what I've been chasing ever since.
-        </p>
-        <p class="text-brown-muted text-[1rem] leading-relaxed mb-9">
-          Kitchen Stories is my space to share recipes that are honest, seasonal, and deeply satisfying. No restaurant tricks, no inaccessible ingredients — just good food, made thoughtfully.
-        </p>
-        <div class="flex flex-wrap gap-4">
-          <a href="#" class="btn-primary">My Story</a>
-          <a href="#newsletter" class="btn-outline">Newsletter</a>
-        </div>
-      </div>
-
-      <!-- Image with decorative accents -->
-      <div class="relative reveal-right d1">
-        <div class="featured-img h-[460px] md:h-[560px]" style="aspect-ratio: unset; border-radius: 14px;">
-          <img src="images/about.jpg" alt="Sofia in her kitchen preparing a seasonal dish" loading="lazy" />
-        </div>
-        <div class="deco-circle bg-primary opacity-[.10]" style="width:160px;height:160px;bottom:-32px;right:-32px;"></div>
-        <div class="deco-circle bg-sage opacity-[.12]"   style="width:96px;height:96px;top:-24px;left:-24px;"></div>
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- ═════════════════════════════════════════════ -->
-  <!-- NEWSLETTER                                    -->
-  <!-- ═════════════════════════════════════════════ -->
-  <section id="newsletter" class="py-20 md:py-24 px-6 md:px-10" style="background: var(--c-surface-low);">
-    <div class="max-w-xl mx-auto text-center reveal">
-      <span class="section-label mb-4">Stay in the Loop</span>
-      <h2 class="font-serif text-[2.6rem] md:text-[3rem] font-bold text-brown leading-tight mb-4">
-        New recipes, every week.
-      </h2>
-      <p class="text-brown-muted text-[1rem] leading-relaxed mb-9 max-w-sm mx-auto">
-        Join 18,000 readers who get fresh seasonal recipes straight to their inbox — no spam, ever.
-      </p>
-      <form id="nl-form" class="flex flex-col sm:flex-row gap-3" onsubmit="handleSubscribe(event)" novalidate>
-        <label for="email-input" class="sr-only">Your email address</label>
-        <input id="email-input" type="email" placeholder="your@email.com" required aria-required="true"
-          class="flex-1 px-5 py-[.875rem] rounded text-brown bg-white border border-surface-highest focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-[.9rem] font-semibold placeholder-brown-muted transition-shadow duration-200" />
-        <button id="nl-btn" type="submit" class="btn-primary whitespace-nowrap">Subscribe</button>
-      </form>
-      <p class="text-[.7rem] text-brown-muted mt-4 opacity-60">No spam. Unsubscribe anytime.</p>
-    </div>
-  </section>
-
-
-  <!-- ═════════════════════════════════════════════ -->
-  <!-- FOOTER                                        -->
-  <!-- ═════════════════════════════════════════════ -->
-  <footer style="background: var(--c-brown);" class="py-14 md:py-20 px-6 md:px-10 text-surface" role="contentinfo">
-    <div class="max-w-7xl mx-auto">
-      <div class="grid md:grid-cols-4 gap-10 mb-14">
-
-        <!-- Brand -->
-        <div class="md:col-span-2">
-          <a href="#" class="font-serif text-[1.3rem] font-bold text-surface hover:text-primary transition-colors">Kitchen Stories</a>
-          <p class="text-[.875rem] leading-relaxed mt-3 max-w-xs" style="color: rgba(251,245,236,.52);">
-            Honest recipes for real kitchens. Seasonal, simple, and made with love.
+        <div class="h-proof flex items-center gap-3 mt-9">
+          <div class="flex -space-x-2" aria-hidden="true">
+            <span class="w-8 h-8 rounded-full bg-terracotta/30 border-2 border-cream inline-block"></span>
+            <span class="w-8 h-8 rounded-full bg-sage/40 border-2 border-cream inline-block"></span>
+            <span class="w-8 h-8 rounded-full bg-ink/20 border-2 border-cream inline-block"></span>
+          </div>
+          <p class="font-ui text-sm text-ink/65">
+            Loved by <strong class="text-dark-brown font-semibold">50,000+</strong> home cooks
           </p>
-          <div class="flex gap-3 mt-6">
+        </div>
+      </div>
 
-            <a href="#" class="social-icon" aria-label="Follow on Instagram">
-              <svg class="w-[17px] h-[17px] text-surface" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            </a>
-            <a href="#" class="social-icon" aria-label="Follow on Pinterest">
-              <svg class="w-[17px] h-[17px] text-surface" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
-            </a>
-            <a href="#" class="social-icon" aria-label="Watch on YouTube">
-              <svg class="w-[17px] h-[17px] text-surface" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
-            </a>
+      <!-- Right: image -->
+      <div class="h-img relative order-1 lg:order-2 rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl"
+           style="height: clamp(300px, 55vw, 86vh);">
+        <img src="images/hero.jpg"
+             alt="A beautifully plated hero dish photographed with warm natural light"
+             class="w-full h-full object-cover"
+             loading="eager">
 
+        <div class="float-badge absolute bottom-6 left-6 bg-cream rounded-2xl shadow-xl px-5 py-4 flex items-center gap-3 max-w-[184px]">
+          <div class="w-10 h-10 rounded-full bg-terracotta/15 flex items-center justify-center flex-shrink-0">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C4623A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <div>
+            <p class="font-ui text-[10px] text-ink/55 font-medium uppercase tracking-wide leading-none mb-0.5">New Recipe</p>
+            <p class="font-display text-sm font-semibold text-dark-brown leading-tight">Every Week</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none" aria-hidden="true">
+    <span class="font-ui text-[10px] tracking-[0.25em] text-ink/40 uppercase">Scroll</span>
+    <div class="w-px h-10 bg-ink/20"></div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     RECIPES
+═══════════════════════════════════════ -->
+<section id="recipes" class="py-24 lg:py-32 bg-tan">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16">
+      <div>
+        <div class="reveal flex items-center gap-3 mb-4">
+          <div class="rule"></div>
+          <span class="font-ui text-xs font-medium text-terracotta tracking-[0.2em] uppercase">From the Kitchen</span>
+        </div>
+        <h2 class="reveal font-display text-4xl lg:text-5xl font-bold text-dark-brown leading-tight">Latest Recipes</h2>
+      </div>
+      <p class="reveal font-body text-base text-ink/65 max-w-xs leading-relaxed">
+        Seasonal, soulful, and always worth the effort.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <!-- Card: Brown Butter Sage Pasta -->
+      <article class="rcard reveal s1 bg-cream rounded-2xl overflow-hidden">
+        <div class="overflow-hidden" style="aspect-ratio:4/3;">
+          <img src="images/pasta.jpg"
+               alt="Brown butter sage pasta in a wide bowl with crispy sage leaves and toasted pine nuts"
+               class="rimg w-full h-full object-cover" loading="lazy">
+        </div>
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-3">
+            <span class="font-ui text-xs font-medium text-terracotta bg-terracotta/10 px-3 py-1 rounded-full">Pasta</span>
+            <div class="flex items-center gap-1" aria-label="Difficulty: 2 of 5" role="img">
+              <span class="dot dot-on"></span><span class="dot dot-on"></span><span class="dot dot-off"></span><span class="dot dot-off"></span><span class="dot dot-off"></span>
+            </div>
+          </div>
+          <h3 class="font-display text-xl font-semibold text-dark-brown leading-snug mb-2">Brown Butter Sage Pasta</h3>
+          <p class="font-body text-sm text-ink/65 leading-relaxed mb-5" style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">
+            Nutty brown butter, fragrant sage, and al dente pasta — simple yet showstopping on a weeknight.
+          </p>
+          <div class="flex items-center gap-5 font-ui text-ink/55" style="font-size:12px;">
+            <span class="flex items-center gap-1.5">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              25 min
+            </span>
+            <span class="flex items-center gap-1.5">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              Serves 4
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card: Dark Chocolate Layer Cake -->
+      <article class="rcard reveal s2 bg-cream rounded-2xl overflow-hidden">
+        <div class="overflow-hidden" style="aspect-ratio:4/3;">
+          <img src="images/cake.jpg"
+               alt="Dark chocolate layer cake with glossy ganache and gold leaf on a marble surface"
+               class="rimg w-full h-full object-cover" loading="lazy">
+        </div>
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-3">
+            <span class="font-ui text-xs font-medium text-terracotta bg-terracotta/10 px-3 py-1 rounded-full">Desserts</span>
+            <div class="flex items-center gap-1" aria-label="Difficulty: 4 of 5" role="img">
+              <span class="dot dot-on"></span><span class="dot dot-on"></span><span class="dot dot-on"></span><span class="dot dot-on"></span><span class="dot dot-off"></span>
+            </div>
+          </div>
+          <h3 class="font-display text-xl font-semibold text-dark-brown leading-snug mb-2">Dark Chocolate Layer Cake</h3>
+          <p class="font-body text-sm text-ink/65 leading-relaxed mb-5" style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">
+            Rich chocolate sponge layers, silky ganache, and a mirror-glaze finish worth every minute.
+          </p>
+          <div class="flex items-center gap-5 font-ui text-ink/55" style="font-size:12px;">
+            <span class="flex items-center gap-1.5">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              1h 20 min
+            </span>
+            <span class="flex items-center gap-1.5">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              Serves 12
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card: Mango Avocado Summer Salad -->
+      <article class="rcard reveal s3 bg-cream rounded-2xl overflow-hidden sm:col-span-2 lg:col-span-1">
+        <div class="overflow-hidden" style="aspect-ratio:4/3;">
+          <img src="images/salad.jpg"
+               alt="Mango avocado summer salad with fresh herbs, edible flowers, and lime dressing"
+               class="rimg w-full h-full object-cover" loading="lazy">
+        </div>
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-3">
+            <span class="flex items-center gap-1.5 font-ui text-xs font-medium text-sage bg-sage/15 px-3 py-1 rounded-full">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#7A9E7E" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+              Vegetarian
+            </span>
+            <div class="flex items-center gap-1" aria-label="Difficulty: 1 of 5" role="img">
+              <span class="dot dot-on"></span><span class="dot dot-off"></span><span class="dot dot-off"></span><span class="dot dot-off"></span><span class="dot dot-off"></span>
+            </div>
+          </div>
+          <h3 class="font-display text-xl font-semibold text-dark-brown leading-snug mb-2">Mango Avocado Summer Salad</h3>
+          <p class="font-body text-sm text-ink/65 leading-relaxed mb-5" style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">
+            Juicy mango, creamy avocado, fresh herbs, and a tangy lime dressing — a bowl of pure summer.
+          </p>
+          <div class="flex items-center gap-5 font-ui text-ink/55" style="font-size:12px;">
+            <span class="flex items-center gap-1.5">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              15 min
+            </span>
+            <span class="flex items-center gap-1.5">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              Serves 2
+            </span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     FEATURED
+═══════════════════════════════════════ -->
+<section id="featured" class="py-24 lg:py-32 bg-cream">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+    <div class="reveal flex items-center gap-3 mb-12">
+      <div class="rule"></div>
+      <span class="font-ui text-xs font-medium text-terracotta tracking-[0.2em] uppercase">Dish of the Week</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="#C4623A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    </div>
+
+    <div class="fcard reveal bg-tan rounded-3xl overflow-hidden grid grid-cols-1 lg:grid-cols-2" style="min-height:480px;">
+
+      <div class="overflow-hidden order-last lg:order-first" style="min-height:300px;">
+        <img src="images/featured.jpg"
+             alt="Slow-roasted herbed lamb shoulder with rosemary, garlic, and roasted vegetables on a carved wooden board"
+             class="fimg w-full h-full object-cover" loading="lazy">
+      </div>
+
+      <div class="flex flex-col justify-center p-8 lg:p-12 xl:p-16">
+        <div class="flex items-center gap-2 mb-5">
+          <span class="font-ui text-xs font-medium text-terracotta bg-terracotta/10 px-3 py-1 rounded-full">Mains</span>
+          <span class="font-ui text-xs font-medium text-sage bg-sage/15 px-3 py-1 rounded-full">Slow Roast</span>
+        </div>
+
+        <h2 class="font-display font-bold text-dark-brown leading-[1.1] mb-5"
+            style="font-size: clamp(2rem, 3.5vw, 3rem);">
+          Slow-Roasted<br>
+          <em class="not-italic italic text-terracotta">Herbed Lamb</em><br>
+          Shoulder
+        </h2>
+
+        <p class="font-body text-base text-ink/75 leading-relaxed mb-8 max-w-md">
+          A showstopping centrepiece — lamb shoulder slow-roasted for four hours with rosemary, garlic, and lemon until it falls clean off the bone. Sunday cooking at its very finest.
+        </p>
+
+        <div class="flex flex-wrap gap-6 mb-8">
+          <div class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-full bg-cream flex items-center justify-center flex-shrink-0">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4623A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <div>
+              <p class="font-ui text-[10px] text-ink/45 font-medium uppercase tracking-wide">Cook Time</p>
+              <p class="font-ui text-sm font-semibold text-dark-brown">4h 30 min</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-full bg-cream flex items-center justify-center flex-shrink-0">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4623A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div>
+              <p class="font-ui text-[10px] text-ink/45 font-medium uppercase tracking-wide">Servings</p>
+              <p class="font-ui text-sm font-semibold text-dark-brown">6 People</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-full bg-cream flex items-center justify-center flex-shrink-0">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4623A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+            </div>
+            <div>
+              <p class="font-ui text-[10px] text-ink/45 font-medium uppercase tracking-wide">Difficulty</p>
+              <div class="flex items-center gap-1 mt-1" aria-label="Difficulty: 3 of 5" role="img">
+                <span class="dot dot-on"></span><span class="dot dot-on"></span><span class="dot dot-on"></span><span class="dot dot-off"></span><span class="dot dot-off"></span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Explore links -->
-        <div>
-          <h3 class="text-[.6rem] font-black tracking-[.22em] uppercase mb-5" style="color:rgba(251,245,236,.32);">Explore</h3>
-          <ul class="flex flex-col gap-2.5">
-            <li><a href="#" class="footer-link">All Recipes</a></li>
-            <li><a href="#" class="footer-link">Pasta &amp; Grains</a></li>
-            <li><a href="#" class="footer-link">Baking &amp; Sweets</a></li>
-            <li><a href="#" class="footer-link">Salads &amp; Sides</a></li>
-            <li><a href="#" class="footer-link">Seasonal Menus</a></li>
-          </ul>
-        </div>
-
-        <!-- Kitchen links -->
-        <div>
-          <h3 class="text-[.6rem] font-black tracking-[.22em] uppercase mb-5" style="color:rgba(251,245,236,.32);">Kitchen</h3>
-          <ul class="flex flex-col gap-2.5">
-            <li><a href="#about"      class="footer-link">About Sofia</a></li>
-            <li><a href="#newsletter" class="footer-link">Newsletter</a></li>
-            <li><a href="#"           class="footer-link">Pantry Essentials</a></li>
-            <li><a href="#"           class="footer-link">Cookbook</a></li>
-            <li><a href="#"           class="footer-link">Contact</a></li>
-          </ul>
-        </div>
-
-      </div>
-
-      <!-- Bottom strip -->
-      <div class="flex flex-col md:flex-row items-center justify-between gap-3 pt-7"
-        style="border-top: 1px solid rgba(251,245,236,.1);">
-        <p class="text-[.72rem]" style="color:rgba(251,245,236,.32);">© 2026 Kitchen Stories. Made with love.</p>
-        <div class="flex gap-5">
-          <a href="#" class="footer-link text-[.72rem]">Privacy</a>
-          <a href="#" class="footer-link text-[.72rem]">Terms</a>
-          <a href="#" class="footer-link text-[.72rem]">Cookies</a>
-        </div>
+        <a href="#" class="btn-fill self-start inline-flex items-center gap-2.5 bg-terracotta text-cream px-7 py-3.5 rounded-full font-ui font-medium text-sm cursor-pointer min-h-[44px]"
+           aria-label="View full recipe for Slow-Roasted Herbed Lamb Shoulder">
+          View Full Recipe
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
       </div>
     </div>
-  </footer>
+  </div>
+</section>
 
 
-  <!-- ═════════════════════════════════════════════ -->
-  <!-- JAVASCRIPT                                    -->
-  <!-- ═════════════════════════════════════════════ -->
-  <script>
-    /* ── Reading progress bar ─────────────────── */
-    const bar = document.getElementById('progress-bar');
-    function updateProgress() {
-      const scrollTop  = window.scrollY;
-      const docHeight  = document.documentElement.scrollHeight - window.innerHeight;
-      bar.style.width  = (docHeight > 0 ? (scrollTop / docHeight) * 100 : 0) + '%';
-    }
-    window.addEventListener('scroll', updateProgress, { passive: true });
-    updateProgress();
+<!-- ═══════════════════════════════════════
+     STATS STRIP
+═══════════════════════════════════════ -->
+<section id="stats" class="py-20 bg-dark-brown">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-6 text-center">
 
-    /* ── Navbar scroll ────────────────────────── */
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 50);
-    }, { passive: true });
+      <div class="reveal s1">
+        <div class="stat-n" data-count="240" data-suffix="+">0</div>
+        <p class="font-ui text-xs font-medium text-cream/50 mt-3 tracking-widest uppercase">Recipes</p>
+      </div>
+      <div class="reveal s2">
+        <div class="stat-n" data-count="18">0</div>
+        <p class="font-ui text-xs font-medium text-cream/50 mt-3 tracking-widest uppercase">Categories</p>
+      </div>
+      <div class="reveal s3">
+        <div class="stat-n" data-count="50" data-suffix="k+">0</div>
+        <p class="font-ui text-xs font-medium text-cream/50 mt-3 tracking-widest uppercase">Happy Cooks</p>
+      </div>
+      <div class="reveal s4">
+        <div class="stat-n" aria-label="Infinite good meals">&#8734;</div>
+        <p class="font-ui text-xs font-medium text-cream/50 mt-3 tracking-widest uppercase">Good Meals</p>
+      </div>
 
-    /* ── Mobile menu ──────────────────────────── */
-    const mBtn = document.getElementById('mobile-btn');
-    const mMenu = document.getElementById('mobile-menu');
-    mBtn.addEventListener('click', () => {
-      const open = mMenu.classList.toggle('hidden') === false;
-      mBtn.setAttribute('aria-expanded', String(open));
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     ABOUT
+═══════════════════════════════════════ -->
+<section id="about" class="py-24 lg:py-32 bg-dark-brown">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+      <div class="reveal rounded-2xl overflow-hidden" style="height:clamp(320px, 50vw, 580px);">
+        <img src="images/about.jpg"
+             alt="The home cook at work in a sunlit kitchen, hands dusted with flour, surrounded by fresh ingredients"
+             class="w-full h-full object-cover" loading="lazy">
+      </div>
+
+      <div class="flex flex-col justify-center">
+        <div class="reveal flex items-center gap-3 mb-6">
+          <div class="rule"></div>
+          <span class="font-ui text-xs font-medium text-terracotta tracking-[0.2em] uppercase">My Story</span>
+        </div>
+
+        <h2 class="reveal font-display font-bold text-cream leading-tight mb-6"
+            style="font-size: clamp(2rem, 3.5vw, 3rem);">
+          From my kitchen,<br>
+          <em class="not-italic italic text-terracotta">to yours.</em>
+        </h2>
+
+        <p class="reveal font-body text-base lg:text-[17px] text-cream/70 leading-relaxed mb-5">
+          I've been cooking since I could stand on a stool and reach the counter. What started as watching my grandmother peel tomatoes and fold dough has grown into a lifelong love affair with food — the smell of onions in butter, the weight of a well-seasoned cast iron, the way a dish can carry a whole memory in a single bite.
+        </p>
+
+        <p class="reveal font-body text-base lg:text-[17px] text-cream/70 leading-relaxed mb-5">
+          Kitchen Stories is where I share everything I make — from quick Tuesday pastas to the kind of Sunday roast that fills a house with warmth for hours. Every recipe has been cooked, tasted, adjusted, and cooked again. I hope you find something here that finds its way into your home, too.
+        </p>
+
+        <p class="reveal font-body text-base lg:text-[17px] text-cream/70 leading-relaxed mb-10">
+          Food has always been my love language — a way of saying <em class="italic text-terracotta/90">I thought of you</em> without saying a word. Pull up a chair.
+        </p>
+
+        <div class="reveal mb-10">
+          <a href="#" class="btn-fill inline-flex items-center gap-2.5 bg-terracotta text-cream px-7 py-3.5 rounded-full font-ui font-medium text-sm cursor-pointer min-h-[44px]" aria-label="Read my full story">
+            Read My Story
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <div class="reveal flex items-center gap-4 flex-wrap">
+          <div class="w-11 h-11 rounded-full border-2 border-terracotta/40 overflow-hidden flex-shrink-0">
+            <img src="images/about.jpg" alt="" class="w-full h-full object-cover object-top" aria-hidden="true">
+          </div>
+          <div>
+            <p class="font-display text-cream font-semibold text-[15px] leading-tight">The Home Cook</p>
+            <p class="font-ui text-cream/40 text-xs mt-0.5">Kitchen Stories</p>
+          </div>
+          <p class="font-display italic text-terracotta text-sm ml-1">"Cook with love."</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════ -->
+<footer class="bg-dark-brown border-t border-white/[0.06] py-12">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+
+      <a href="#hero" aria-label="Kitchen Stories — home" class="cursor-pointer flex-shrink-0">
+        <span class="font-display text-xl font-semibold text-cream">
+          Kitchen <em class="not-italic italic text-terracotta">Stories</em>
+        </span>
+      </a>
+
+      <nav aria-label="Footer navigation">
+        <ul class="flex flex-wrap justify-center gap-6 list-none m-0 p-0">
+          <li><a href="#recipes"  class="font-ui text-sm text-cream/40 hover:text-cream transition-colors duration-200 cursor-pointer">Recipes</a></li>
+          <li><a href="#featured" class="font-ui text-sm text-cream/40 hover:text-cream transition-colors duration-200 cursor-pointer">Featured</a></li>
+          <li><a href="#about"    class="font-ui text-sm text-cream/40 hover:text-cream transition-colors duration-200 cursor-pointer">About</a></li>
+        </ul>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="#" class="w-9 h-9 flex items-center justify-center rounded-full bg-white/[0.06] hover:bg-terracotta/25 transition-colors duration-200 cursor-pointer" aria-label="Instagram">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FBF5EC" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="#" class="w-9 h-9 flex items-center justify-center rounded-full bg-white/[0.06] hover:bg-terracotta/25 transition-colors duration-200 cursor-pointer" aria-label="Pinterest">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#FBF5EC" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.236 2.636 7.855 6.356 9.312-.088-.791-.167-2.005.035-2.868.181-.78 1.172-4.97 1.172-4.97s-.299-.598-.299-1.482c0-1.388.806-2.428 1.808-2.428.852 0 1.265.64 1.265 1.408 0 .858-.546 2.14-.828 3.33-.236.995.499 1.806 1.476 1.806 1.772 0 3.138-1.868 3.138-4.562 0-2.386-1.715-4.054-4.163-4.054-2.837 0-4.5 2.127-4.5 4.326 0 .856.33 1.775.741 2.276a.3.3 0 0 1 .069.284c-.076.313-.245.995-.277 1.134-.044.183-.145.222-.335.134-1.249-.581-2.03-2.407-2.03-3.874 0-3.154 2.292-6.052 6.608-6.052 3.469 0 6.165 2.473 6.165 5.776 0 3.447-2.173 6.22-5.19 6.22-1.013 0-1.966-.527-2.292-1.148l-.623 2.378c-.226.869-.835 1.958-1.244 2.621.937.29 1.931.446 2.962.446 5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="mt-8 pt-6 border-t border-white/[0.06] text-center">
+      <p class="font-ui text-xs text-cream/25">© 2026 Kitchen Stories — Food made with love, shared freely.</p>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  'use strict';
+
+  // ── Navbar shadow on scroll ──────────────────────
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 80);
+  }, { passive: true });
+
+  // ── Mobile menu ──────────────────────────────────
+  const mobBtn    = document.getElementById('mob-btn');
+  const mobMenu   = document.getElementById('mob-menu');
+  const iconOpen  = document.getElementById('icon-open');
+  const iconClose = document.getElementById('icon-close');
+
+  mobBtn.addEventListener('click', () => {
+    const nowOpen = !mobMenu.classList.contains('hidden');
+    mobMenu.classList.toggle('hidden');
+    mobBtn.setAttribute('aria-expanded', !nowOpen);
+    iconOpen.classList.toggle('hidden', !nowOpen);
+    iconClose.classList.toggle('hidden', nowOpen);
+  });
+
+  mobMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobMenu.classList.add('hidden');
+    mobBtn.setAttribute('aria-expanded', 'false');
+    iconOpen.classList.remove('hidden');
+    iconClose.classList.add('hidden');
+  }));
+
+  // ── Scroll reveal ────────────────────────────────
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('on'); revealObs.unobserve(e.target); }
     });
-    mMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-      mMenu.classList.add('hidden');
-      mBtn.setAttribute('aria-expanded', 'false');
-    }));
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
-    /* ── IntersectionObserver: scroll reveals ─── */
-    const revealEls = document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale');
-    const revealObs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
-      });
-    }, { threshold: 0.10, rootMargin: '0px 0px -40px 0px' });
-    revealEls.forEach(el => revealObs.observe(el));
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-    /* ── Animated number counters ─────────────── */
-    function animateCounter(el) {
-      const target = parseInt(el.dataset.counter, 10);
-      const suffix = el.dataset.suffix || '';
-      const dur = 1400;
-      const start = performance.now();
-      function step(now) {
-        const p = Math.min((now - start) / dur, 1);
-        const ease = 1 - Math.pow(1 - p, 4); // ease-out quart
-        el.textContent = Math.round(ease * target) + suffix;
-        if (p < 1) requestAnimationFrame(step);
+  // ── Active nav highlight ─────────────────────────
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks  = document.querySelectorAll('.nl[data-s]');
+
+  const sectionObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => l.classList.toggle('active', l.dataset.s === e.target.id));
       }
-      requestAnimationFrame(step);
-    }
-    const counterEls = document.querySelectorAll('[data-counter]');
-    const counterObs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { animateCounter(e.target); counterObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.35, rootMargin: '-72px 0px -40% 0px' });
+
+  sections.forEach(s => sectionObs.observe(s));
+
+  // ── Stats count-up ───────────────────────────────
+  const statsObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.querySelectorAll('[data-count]').forEach(el => {
+        const end    = parseInt(el.dataset.count, 10);
+        const suffix = el.dataset.suffix || '';
+        const total  = 108; // ~1800ms at 60fps
+        let frame = 0;
+        const tick = () => {
+          frame++;
+          const t = frame / total;
+          const eased = 1 - Math.pow(1 - t, 3);
+          el.textContent = Math.round(eased * end) + suffix;
+          if (frame < total) requestAnimationFrame(tick);
+          else el.textContent = end + suffix;
+        };
+        requestAnimationFrame(tick);
       });
-    }, { threshold: 0.6 });
-    counterEls.forEach(el => counterObs.observe(el));
+      statsObs.unobserve(e.target);
+    });
+  }, { threshold: 0.5 });
 
-    /* ── Hero image slow-zoom on load ─────────── */
-    const heroWrap = document.getElementById('hero-img-wrap');
-    if (heroWrap) {
-      const img = heroWrap.querySelector('img');
-      if (img.complete) heroWrap.classList.add('loaded');
-    }
-
-    /* ── Newsletter ───────────────────────────── */
-    function handleSubscribe(e) {
-      e.preventDefault();
-      const input = document.getElementById('email-input');
-      const btn   = document.getElementById('nl-btn');
-      if (!input.value || !input.validity.valid) { input.focus(); return; }
-      const orig = btn.textContent;
-      btn.textContent = '✓ Subscribed!';
-      btn.disabled = true;
-      btn.style.background = 'linear-gradient(135deg,#7A9E7E,#5C7D60)';
-      btn.style.boxShadow  = '0 4px 16px rgba(122,158,126,.3)';
-      input.value = '';
-      setTimeout(() => {
-        btn.textContent = orig;
-        btn.disabled = false;
-        btn.style.background = '';
-        btn.style.boxShadow  = '';
-      }, 3500);
-    }
-  </script>
+  const statsSection = document.getElementById('stats');
+  if (statsSection) statsObs.observe(statsSection);
+</script>
 
 </body>
 </html>
