@@ -112,14 +112,21 @@
     .nl:hover, .nl.active { color: var(--c-primary); }
     .nl.active::after { width:100%; }
 
-    /* ── Recipe card ── */
+    /* ── Recipe card (Stitch pattern) ── */
     .rcard {
       cursor: pointer;
-      transition: transform 300ms var(--ease), box-shadow 300ms var(--ease);
+      transition: transform 500ms var(--ease), box-shadow 500ms var(--ease);
     }
     .rcard:hover { transform: translateY(-8px); box-shadow: 0 24px 64px rgba(44,26,15,0.14); }
-    .rcard:hover .rimg { transform: scale(1.07); }
+    .rcard:hover .rimg { transform: scale(1.1); }
     .rimg { transition: transform 700ms var(--ease); }
+
+    /* ── About image rotation (Stitch pattern) ── */
+    .about-img-wrap {
+      transition: transform 700ms var(--ease);
+      transform: rotate(-2deg);
+    }
+    .about-img-wrap:hover { transform: rotate(0deg); }
 
     /* ── Featured card ── */
     .fcard { transition: box-shadow 300ms var(--ease); }
@@ -315,97 +322,94 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
       <!-- Card: Brown Butter Sage Pasta -->
-      <article class="rcard reveal s1 bg-cream rounded-2xl overflow-hidden">
-        <div class="overflow-hidden" style="aspect-ratio:4/3;">
+      <article class="rcard reveal s1 bg-cream rounded-2xl overflow-hidden shadow-sm group">
+        <div class="relative overflow-hidden" style="aspect-ratio:4/3;">
           <img src="images/pasta.jpg"
                alt="Brown butter sage pasta in a wide bowl with crispy sage leaves and toasted pine nuts"
                class="rimg w-full h-full object-cover" loading="lazy">
-        </div>
-        <div class="p-6">
-          <div class="flex items-center justify-between mb-3">
-            <span class="font-ui text-xs font-medium text-terracotta bg-terracotta/10 px-3 py-1 rounded-full">Pasta</span>
-            <div class="flex items-center gap-1" aria-label="Difficulty: 2 of 5" role="img">
-              <span class="dot dot-on"></span><span class="dot dot-on"></span><span class="dot dot-off"></span><span class="dot dot-off"></span><span class="dot dot-off"></span>
-            </div>
+          <div class="absolute top-4 left-4">
+            <span class="font-ui text-xs font-bold text-cream bg-terracotta px-4 py-1 rounded-full tracking-widest uppercase shadow-lg">Pasta</span>
           </div>
-          <h3 class="font-display text-xl font-semibold text-dark-brown leading-snug mb-2">Brown Butter Sage Pasta</h3>
-          <p class="font-body text-sm text-ink/65 leading-relaxed mb-5" style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">
+        </div>
+        <div class="p-8 space-y-4">
+          <h3 class="font-display text-2xl font-bold text-dark-brown leading-snug">Brown Butter Sage Pasta</h3>
+          <p class="font-body text-sm text-ink/65 leading-relaxed" style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">
             Nutty brown butter, fragrant sage, and al dente pasta — simple yet showstopping on a weeknight.
           </p>
-          <div class="flex items-center gap-5 font-ui text-ink/55" style="font-size:12px;">
+          <div class="flex items-center justify-between border-t border-tan pt-4 font-ui text-ink/55" style="font-size:12px;">
             <span class="flex items-center gap-1.5">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C4623A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
               25 min
             </span>
             <span class="flex items-center gap-1.5">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C4623A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
               Serves 4
             </span>
+          </div>
+          <div class="flex gap-1 pt-1" aria-label="Difficulty: 2 of 5" role="img">
+            <span class="dot dot-on"></span><span class="dot dot-on"></span><span class="dot dot-off"></span><span class="dot dot-off"></span><span class="dot dot-off"></span>
           </div>
         </div>
       </article>
 
       <!-- Card: Dark Chocolate Layer Cake -->
-      <article class="rcard reveal s2 bg-cream rounded-2xl overflow-hidden">
-        <div class="overflow-hidden" style="aspect-ratio:4/3;">
+      <article class="rcard reveal s2 bg-cream rounded-2xl overflow-hidden shadow-sm group lg:translate-y-6">
+        <div class="relative overflow-hidden" style="aspect-ratio:4/3;">
           <img src="images/cake.jpg"
                alt="Dark chocolate layer cake with glossy ganache and gold leaf on a marble surface"
                class="rimg w-full h-full object-cover" loading="lazy">
-        </div>
-        <div class="p-6">
-          <div class="flex items-center justify-between mb-3">
-            <span class="font-ui text-xs font-medium text-terracotta bg-terracotta/10 px-3 py-1 rounded-full">Desserts</span>
-            <div class="flex items-center gap-1" aria-label="Difficulty: 4 of 5" role="img">
-              <span class="dot dot-on"></span><span class="dot dot-on"></span><span class="dot dot-on"></span><span class="dot dot-on"></span><span class="dot dot-off"></span>
-            </div>
+          <div class="absolute top-4 left-4">
+            <span class="font-ui text-xs font-bold text-cream bg-terracotta px-4 py-1 rounded-full tracking-widest uppercase shadow-lg">Desserts</span>
           </div>
-          <h3 class="font-display text-xl font-semibold text-dark-brown leading-snug mb-2">Dark Chocolate Layer Cake</h3>
-          <p class="font-body text-sm text-ink/65 leading-relaxed mb-5" style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">
+        </div>
+        <div class="p-8 space-y-4">
+          <h3 class="font-display text-2xl font-bold text-dark-brown leading-snug">Dark Chocolate Layer Cake</h3>
+          <p class="font-body text-sm text-ink/65 leading-relaxed" style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">
             Rich chocolate sponge layers, silky ganache, and a mirror-glaze finish worth every minute.
           </p>
-          <div class="flex items-center gap-5 font-ui text-ink/55" style="font-size:12px;">
+          <div class="flex items-center justify-between border-t border-tan pt-4 font-ui text-ink/55" style="font-size:12px;">
             <span class="flex items-center gap-1.5">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C4623A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
               1h 20 min
             </span>
             <span class="flex items-center gap-1.5">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C4623A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
               Serves 12
             </span>
+          </div>
+          <div class="flex gap-1 pt-1" aria-label="Difficulty: 4 of 5" role="img">
+            <span class="dot dot-on"></span><span class="dot dot-on"></span><span class="dot dot-on"></span><span class="dot dot-on"></span><span class="dot dot-off"></span>
           </div>
         </div>
       </article>
 
       <!-- Card: Mango Avocado Summer Salad -->
-      <article class="rcard reveal s3 bg-cream rounded-2xl overflow-hidden sm:col-span-2 lg:col-span-1">
-        <div class="overflow-hidden" style="aspect-ratio:4/3;">
+      <article class="rcard reveal s3 bg-cream rounded-2xl overflow-hidden shadow-sm group sm:col-span-2 lg:col-span-1">
+        <div class="relative overflow-hidden" style="aspect-ratio:4/3;">
           <img src="images/salad.jpg"
                alt="Mango avocado summer salad with fresh herbs, edible flowers, and lime dressing"
                class="rimg w-full h-full object-cover" loading="lazy">
-        </div>
-        <div class="p-6">
-          <div class="flex items-center justify-between mb-3">
-            <span class="flex items-center gap-1.5 font-ui text-xs font-medium text-sage bg-sage/15 px-3 py-1 rounded-full">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#7A9E7E" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
-              Vegetarian
-            </span>
-            <div class="flex items-center gap-1" aria-label="Difficulty: 1 of 5" role="img">
-              <span class="dot dot-on"></span><span class="dot dot-off"></span><span class="dot dot-off"></span><span class="dot dot-off"></span><span class="dot dot-off"></span>
-            </div>
+          <div class="absolute top-4 left-4">
+            <span class="font-ui text-xs font-bold text-white px-4 py-1 rounded-full tracking-widest uppercase shadow-lg" style="background:#7A9E7E;">Vegetarian</span>
           </div>
-          <h3 class="font-display text-xl font-semibold text-dark-brown leading-snug mb-2">Mango Avocado Summer Salad</h3>
-          <p class="font-body text-sm text-ink/65 leading-relaxed mb-5" style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">
+        </div>
+        <div class="p-8 space-y-4">
+          <h3 class="font-display text-2xl font-bold text-dark-brown leading-snug">Mango Avocado Summer Salad</h3>
+          <p class="font-body text-sm text-ink/65 leading-relaxed" style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">
             Juicy mango, creamy avocado, fresh herbs, and a tangy lime dressing — a bowl of pure summer.
           </p>
-          <div class="flex items-center gap-5 font-ui text-ink/55" style="font-size:12px;">
+          <div class="flex items-center justify-between border-t border-tan pt-4 font-ui text-ink/55" style="font-size:12px;">
             <span class="flex items-center gap-1.5">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C4623A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
               15 min
             </span>
             <span class="flex items-center gap-1.5">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C4623A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
               Serves 2
             </span>
+          </div>
+          <div class="flex gap-1 pt-1" aria-label="Difficulty: 1 of 5" role="img">
+            <span class="dot dot-on"></span><span class="dot dot-off"></span><span class="dot dot-off"></span><span class="dot dot-off"></span><span class="dot dot-off"></span>
           </div>
         </div>
       </article>
@@ -531,10 +535,14 @@
   <div class="max-w-7xl mx-auto px-6 lg:px-12">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
-      <div class="reveal rounded-2xl overflow-hidden" style="height:clamp(320px, 50vw, 580px);">
-        <img src="images/about.jpg"
-             alt="The home cook at work in a sunlit kitchen, hands dusted with flour, surrounded by fresh ingredients"
-             class="w-full h-full object-cover" loading="lazy">
+      <!-- Stitch pattern: rotated image wrapper with hover correction -->
+      <div class="reveal relative">
+        <div class="absolute -inset-4 bg-terracotta/10 rounded-2xl -rotate-3 pointer-events-none" aria-hidden="true"></div>
+        <div class="about-img-wrap relative rounded-2xl overflow-hidden shadow-2xl" style="height:clamp(320px, 50vw, 580px);">
+          <img src="images/about.jpg"
+               alt="The home cook at work in a sunlit kitchen, hands dusted with flour, surrounded by fresh ingredients"
+               class="w-full h-full object-cover" loading="lazy">
+        </div>
       </div>
 
       <div class="flex flex-col justify-center">

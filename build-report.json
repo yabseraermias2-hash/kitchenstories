@@ -71,9 +71,30 @@
     },
     "step_4_screen_generation": {
       "tool": "google_stitch",
-      "status": "skipped",
-      "reason": "All sections built directly from brief — comprehensive design tokens and content made Stitch redundant",
-      "note": "Stitch MCP was connected and available"
+      "status": "completed",
+      "project_id": "11463800353229557920",
+      "project_title": "Kitchen Stories Recipe Blog",
+      "screens_generated": [
+        {
+          "screen_id": "5cdf2cc2abe447f1bbb03c512f37bf4d",
+          "name": "Hero Section",
+          "prompt": "Warm editorial hero section, split layout, Playfair Display headline, terracotta CTAs, cream background",
+          "patterns_adopted": ["split layout", "terracotta gradient buttons", "decorative background element", "floating editorial label"]
+        },
+        {
+          "screen_id": "c3d8550b76314276a88449537cff1350",
+          "name": "Recipe Cards Grid",
+          "prompt": "3-column recipe card grid, badge-inside-image, difficulty dots, meta info row, hover lift",
+          "patterns_adopted": ["badge absolute top-4 left-4 inside image", "staggered card offset on desktop", "bordered meta row", "dots below meta"]
+        },
+        {
+          "screen_id": "bf5f0a2756294e0daadfa0fb26daf030",
+          "name": "About + Stats + Footer",
+          "prompt": "Dark brown about section, image with rotate effect, personal story, stats strip, footer",
+          "patterns_adopted": ["rotate(-2deg) hover:rotate(0) image wrapper", "decorative blurred background behind image", "stats strip layout", "three-column footer with social icons"]
+        }
+      ],
+      "integration_note": "Stitch layout patterns, card designs, and component structures adopted. Local images (images/*.jpg) substituted for Stitch's generated images. Existing animation system (IntersectionObserver, keyframes) retained."
     },
     "step_5_image_generation": {
       "tool": "nano_banana_2",
